@@ -1,0 +1,74 @@
+.cards{
+  margin: 20px 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  li.card{
+    background: $primary;
+    background-image: url('https://fakeimg.pl/35x45/333/fff/');
+    background-repeat: no-repeat;
+    background-position: 20px 20px;
+    max-width: 277.5px;
+    width: 100%;
+    display: inline-block;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 20px;
+    transition: 0.6s all;
+    &:hover{ background-color: lighten($primary, 5%); transition: 0.3s all;}
+    &:last-child{ margin-right: 0px; }
+    a{
+      display: block;
+      color: #fff;
+      padding: 20px;
+      padding-top: 80px;
+      h3{
+        color: #fff;
+        height: 60px;
+        overflow: hidden;
+        font-weight: 500;
+      }
+      small{
+        margin-top: 30px;
+        display: block;
+        font-size: 14px;
+      }
+      ul.tags{
+        margin: 10px 0 20px 0;
+        li{
+          display: inline-block;
+          text-transform: uppercase;
+          color: #fff;
+          line-height: 13px;
+          font-size: 13px;
+          font-weight: 500;
+          padding: 5px 8px;
+          border-radius: 3px;
+          margin-right: 5px;
+          &:last-child{
+            margin-right: 0px;
+          }
+          &.latest{
+            background: $teal;
+          }
+          &.pdf{
+            background: $secondary;
+          }
+        }
+      }
+      span.download{
+        display: inline-block;
+        border-bottom: 1px solid #fff;
+        &:before{
+          content:"\e011";
+          font-family: "bgl-icons";
+          vertical-align: middle;
+          margin-right: 10px;
+          font-size: 23px;
+          line-height: 23px;
+        }
+      }
+    }
+  }
+}

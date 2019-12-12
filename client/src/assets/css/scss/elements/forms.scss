@@ -1,0 +1,825 @@
+input[type="text"]{
+	border-radius: 5px;
+	border: 1px solid $key-light-grey;
+	padding: 20px;
+	box-shadow: inset 0px 1px 2px 0px $key-grey;
+	color: $light-grey;
+	margin: 10px 0;
+	display: block;
+	width: 100%;
+	transition: 0.6s all;
+	font-weight: 100;
+	&:hover{ transition: 0.3s all; }
+	&:focus{ outline: none; }
+	&.default{
+		font-weight: lighter;
+		&:hover{
+			border: 1px solid $charcoal;
+			background: $bg-lighter-grey;
+		}
+		&:focus{
+			font-weight: 500;
+			border: 1px solid $secondary;
+			color: $charcoal;
+			background: #fff;
+		}
+	}
+	&.validated{
+		background: #f6faf4;
+		font-weight: 500;
+		border: 1px solid $success;
+		color: $primary;
+		&:hover{
+			background: $bg-lighter-grey;
+		}
+	}
+	&.error{
+		background: #fef7f7;
+		border: 1px solid $error;
+		font-weight: 500;
+		color: $error;
+	}
+	&.inactive{
+		background: $bg-lighter-grey;
+		box-shadow: none;
+		cursor: not-allowed;
+		font-weight: lighter;
+	}
+
+}
+
+// Variation: License plate
+.license-plate-wrap{
+	position: relative;
+	max-width: 320px;
+
+	&:before{
+		content:"";
+		background-color: #0058ae;
+		background-image: url('../images/icon-registration.svg');
+		background-size: 20px;
+		background-repeat: no-repeat;
+		background-position: 50%;
+		width: 45px;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		border-radius: 5px 0 0 5px;
+		left: 0;
+	}
+	input{
+		padding-left: 60px;
+		&:hover{
+			border: 1px solid $charcoal;
+		}
+	}
+	&.inactive{
+		input:hover{
+			border: 1px solid $key-light-grey;
+		}
+	}
+	&.inactive:before{
+		border-top: 1px solid $key-light-grey;
+		border-left: 1px solid $key-light-grey;
+		border-bottom: 1px solid $key-light-grey;
+		background-color: $key-light-grey;
+	}
+}
+
+// Inputs with suffix and prefix icons
+.input-suffix, .input-prefix{
+	position: relative;
+	.suffix-icon, .prefix-icon{
+		border: none;
+		background: none;
+		outline: none;
+	}
+	button{ cursor: pointer; } /* If (button) { cursor = pointer ] */
+	input.default{
+		&:focus{ border: 1px solid $primary; }
+	}
+}
+// Input with icon suffix
+// ie: date picker
+.input-suffix{
+	input[type="text"]{
+		padding-right: 60px;
+		&.error{
+			+ .suffix-icon{
+				background: url('https://fakeimg.pl/20x20/F56565/fff/');
+			}
+		}
+	}
+	.suffix-icon{
+		height: 20px;
+		width: 20px;
+		background: url('https://fakeimg.pl/20x20/333/fff/');
+		background-repeat: no-repeat;
+		position: absolute;
+		right: 20px;
+		top: 20px;
+	}
+}
+// Input with icon prefix
+// ie: pound symbol
+.input-prefix{
+	input[type="text"]{
+		padding-left: 60px;
+		&.error{
+			+ .prefix-icon{
+				background: url('https://fakeimg.pl/20x20/F56565/fff/');
+			}
+		}
+	}
+	.prefix-icon{
+		height: 20px;
+		width: 20px;
+		background: url('https://fakeimg.pl/20x20/333/fff/');
+		background-repeat: no-repeat;
+		position: absolute;
+		left: 20px;
+		top: 20px;
+	}
+}
+// Selects
+select{
+	width: 100%;
+	appearance: none;
+	border-radius: 5px;
+	border: 1px solid $key-light-grey;
+	padding: 20px;
+	box-shadow: inset 0px 1px 2px 0px $key-grey;
+	color: $primary;
+	font-weight: 500;
+	margin: 10px 0;
+	display: block;
+	width: 100%;
+	transition: 0.6s all;
+	background: url('../images/icon-arrow-down.svg');
+	background-repeat: no-repeat;
+	background-position: 100% 50%;
+	&:hover{
+		background-color: $bg-lighter-grey;
+		border: 1px solid $charcoal;
+	}
+	&:focus{ outline: none; }
+	&.error{
+		border-color: $error;
+		color: $error;
+		&:hover{
+			background-color: #fef7f7;
+		}
+	}
+	&.validated{
+		border-color: $success;
+		&:hover{
+			background-color: #f6faf4;
+		}
+
+	}
+	&.inactive{
+		cursor: not-allowed;
+		color: $key-grey;
+		box-shadow: none;
+		&:hover{
+			border: 1px solid $key-light-grey;
+		}
+	}
+	option{
+		color: $charcoal;
+		&:hover{
+			background: $primary;
+			color: #fff;
+		}
+	}
+}
+// Radios
+.radio{
+	position: relative;
+	display: inline-block;
+	input{
+		position: absolute;
+		left: -999999999px;
+		height: 1px;
+		width: 1px;
+		overflow: hidden;
+		&:checked{
+			+ label {
+				border-color: $success;
+				transition: 0.3s all;
+				&:after{
+					background: $success;
+					transition: 0.3s all;
+				}
+			}
+		}
+		&:hover{
+			+ label{
+				border-color: $primary;
+				transition: 0.3s all;
+				&:after{
+					background: $primary-20;
+				}
+			}
+		}
+		&:focus{
+			+ label {
+				border-color: $success;
+				&:after{
+					background: $success;
+				}
+			}
+		}
+	}
+	label{
+		height: 60px;
+		width: 60px;
+		border: 2px solid $key-grey;
+		border-radius: 50%;
+		display: block;
+		&:after{
+			content:"";
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			border-radius: 50%;
+			top: 0;
+			left: 0;
+			transform: scale(0.8);
+			transition: 0.6s all;
+		}
+	}
+	&.selected{
+
+	}
+	&.error{
+		label{
+			border-color: $error;
+			&:after{
+				background: #fcd8d8;
+			}
+		}
+	}
+	&.inactive{
+		border-radius: 50%;
+		background: #fff!important;
+		&:hover{
+			label{
+				border-color: $key-grey;
+				cursor: not-allowed;
+				&:after{
+					background: $bg-lighter-grey;
+				}
+			}
+		}
+		label{
+			border-color: $key-grey;
+			cursor: not-allowed;
+			&:after{
+				background: $bg-lighter-grey;
+			}
+		}
+	}
+}
+.radio-tab{
+	display: inline-block;
+	margin: 10px auto;
+	position: relative;
+	&.large{
+
+	}
+	&.small{
+		label{
+			padding: 15px 20px;
+			font-size: 13px;
+			line-height: 13px;
+		}
+	}
+	&.error{
+		label{
+			border-color: $error;
+			color: $error;
+			&:hover{
+				border-color: $primary;
+			}
+		}
+	}
+	&.inactive{
+		label{
+			color: $key-grey;
+			border-color: $key-grey;
+			cursor: not-allowed;
+			&:hover{
+				background: #fff;
+				color: $key-grey;
+			}
+		}
+	}
+	input[type="radio"]{
+		position: absolute;
+		left: -9999999px;
+		top: auto;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		&:checked{
+			+ label {
+				border-color: $success;
+				background: $success;
+				color: #fff;
+				transition: 0.3s all;
+			}
+		}
+	}
+	label{
+		border: 1px solid $key-grey;
+		cursor: pointer;
+		padding: 20px;
+		display: inline-block;
+		font-size: 15px;
+		line-height: 15px;
+		border-radius: 5px;
+		color: $primary;
+		transition: 0.3s all;
+		&:hover{
+			background: $primary;
+			color: #fff;
+			transition: 0s all;
+		}
+	}
+}
+// Checkboxes
+.checkbox{
+	position: relative;
+	display: inline-block;
+	&:hover{
+		label{
+			border-color: $primary;
+			background-color: $primary-20;
+			&:after{
+				content:"\68";
+				color: $primary-80;
+			}
+		}
+	}
+	&.selected{
+		label{
+			background: $success;
+			box-shadow: none;
+			border-color: $success;
+			&:after{
+				content:"\68";
+			}
+		}
+		&:hover{
+			label{
+				&:after{
+					color: #fff;
+				}
+			}
+		}
+	}
+	&.error{
+		label{
+			border-color: $error;
+			&:after{
+				color: $error;
+				content:"\68";
+			}
+		}
+		&:hover{
+			label{
+				border-color: $primary;
+				background-color: $primary-20;
+			}
+		}
+	}
+
+	&.inactive{
+		label{
+			border-color: $key-grey;
+			background-color: $bg-lighter-grey;
+			&:after{
+				color: $key-grey;
+				cursor: not-allowed;
+				content:"\68";
+			}
+		}
+	}
+	label{
+		height: 60px;
+		width: 60px;
+		border-radius: 5px;
+		border: 1px solid $key-light-grey;
+		padding: 20px;
+		box-shadow: inset 0px 1px 2px 0px $key-grey;
+		color: $light-grey;
+		margin: 10px 0;
+		display: block;
+		transition: 0.6s all;
+		font-weight: 100;
+		position: relative;
+		&:after{
+			color: #fff;
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			line-height: 60px;
+			text-align: center;
+			left: 0;
+			top: 0;
+			font-family:"bgl-icons";
+			font-size: 36px;
+		}
+	}
+	input{
+		position: absolute;
+		left: -999999px;
+		height: 1px;
+		width: 1px;
+		&:checked{
+			+ label {
+				background: $success!important;
+				box-shadow: none;
+				border-color: $success!important;
+				&:after{
+					content:"\68";
+					color: #fff;
+				}
+			}
+		}
+	}
+}
+// Image buttons
+.icon-button{
+	margin: 10px auto;
+	display: inline-block;
+	position: relative;
+	text-align: center;
+	&.error{
+		label{
+			border-color: $error;
+			color: $error;
+			&:hover{ border-color: $primary; }
+		}
+	}
+	&.inactive{
+		label{
+			background-color: $bg-lighter-grey;
+			color: $light-grey;
+			cursor: not-allowed;
+			&:hover{
+				cursor: not-allowed;
+				background-color: $bg-lighter-grey;
+				color: $light-grey;
+			}
+		}
+	}
+	label{
+		border: 1px solid $key-grey;
+		padding: 20px;
+		display: inline-block;
+		border-radius: 5px;
+		color: $primary;
+		font-size: 16px;
+		line-height: 16px;
+		cursor: pointer;
+		position: relative;
+		transition: 0.6s all;
+		&:after{
+			content:"";
+			height: 1px;
+			width: 0px;
+			position: absolute;
+			bottom: 10px;
+			left: 0%;
+			background: #fff;
+			transition: 0.3s all;
+			opacity: 0;
+		}
+		&:hover{
+			background: $primary;
+			color: #fff;
+			transition: 0.3s all;
+		}
+		/* If UI icon */
+		&[data-icon]{
+			&:before{
+				content: attr(data-icon);
+				margin-right: 10px;
+			}
+		}
+		/* If image specified */
+		img{
+			vertical-align: middle;
+			z-index: -500;
+			display: block;
+			margin: auto;
+			margin-bottom: 15px;
+		}
+	}
+	input[type="radio"], input[type="checkbox"]{
+		position: absolute;
+		left: -9999999px;
+		top: auto;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		&:checked{
+			+ label {
+				border-color: $success;
+				background: $success;
+				color: #fff;
+				transition: 0.3s all;
+			}
+		}
+	}
+	//input[type="radio"]:checked + label{
+	//	&:after{
+	//		width: 30px;
+	//		left: 50%;
+	//		margin-left: -15px;
+	//		transition: 0.3s all;
+	//		opacity: 1;
+	//	}
+	//}
+	&.large{
+		input{
+
+		}
+	}
+	&.small{
+		label{
+			width: 160px;
+			/* If UI icon */
+			&[data-icon]{
+				&:before{
+					display: block;
+					text-align: center;
+					content: attr(data-icon);
+					margin: auto;
+					margin-bottom: 15px;
+					font-size: 28px;
+				}
+			}
+			/* If image specified */
+			img{
+				margin: auto;
+				margin-bottom: 15px;
+				display: block;
+			}
+		}
+		input{
+
+		}
+	}
+}
+// Payment Cards
+.payment-card{
+	border: 1px solid $key-grey;
+	padding: 20px;
+	border-radius: 8px;
+	margin: 10px 0;
+
+	// Variation: Exisitng Cards
+	&.exisiting{
+		&.large, &.small{
+			background: url('https://fakeimg.pl/50x30/333/fff/');
+			background-repeat: no-repeat;
+			small{
+				display: block;
+			}
+			span{
+				display: block;
+				&.card-numbers{
+					font-weight: bold;
+					font-size: 16px;
+					&:before{
+						content:attr(data-blanks);
+						margin-right: 5px;
+						letter-spacing: 1.5px;
+						font-weight: 700;
+					}
+
+				}
+				&.payment-card-name{
+					text-transform:uppercase;
+					font-weight: bold;
+				}
+			}
+			&.selected{
+				background-color: $success!important;
+				border-color: $success;
+			}
+			&.error{
+
+			}
+			&.inactive{
+
+			}
+		}
+		&.large{
+			max-width: 300px;
+			padding-top: 40px;
+			padding-right: 40px;
+			background-position: calc(100% - 10px) 10px;
+			small{
+				font-size: .6875rem;
+				line-height: 1.2rem;
+			}
+			span{
+				&.card-numbers{
+					font-size: 1.375rem;
+				}
+				&.payment-card-name{
+					margin-top: 10px;
+					display: block;
+					font-size: 0.75rem;
+				}
+			}
+		}
+		&.small{
+			max-width: 190px;
+			padding: 15px 20px;
+			background-position: calc(100% - 10px) calc(100% - 15px);
+			background-size: 40px;
+			small{
+				font-size: 10px;
+				text-transform: uppercase;
+			}
+			span{
+				line-height: 12px;
+				font-size: 10px;
+				margin-top: 5px;
+				&.card-numbers{
+					margin-bottom: 10px;
+				}
+				&.exp-csv{
+					display: block;
+					line-height: 10px;
+				}
+			}
+		}
+		// Variation: Display Visa Logo
+		&.visa{
+			background-image: url('https://fakeimg.pl/50x30/333/fff/?text=visa');
+		}
+		// Variation: Display Maestro Logo
+		&.maestro{
+			background-image: url('https://fakeimg.pl/50x30/333/fff/?text=maestro');
+		}
+	}
+	// Variation: New cards
+	&.new-card{
+		text-align: center;
+		max-width: 190px;
+		width: 100%;
+		display: inline-block;
+		overflow: hidden;
+		cursor: pointer;
+		transition: 0.3s all;
+		/* If UI icon */
+		&[data-icon]{
+			&:before{
+				content: attr(data-icon);
+				display: block;
+				height: 20px;
+				width: 20px;
+				margin: auto;
+				margin-bottom: 15px;
+			}
+		}
+		/* If image specified */
+		img{
+			display: block;
+			margin: auto;
+			margin-bottom: 15px;
+			max-height: 20px;
+		}
+		a{ display: block; }
+		&:hover a{ color: #fff; transition: 0.3s all; }
+		&.selected{
+		}
+		&.error{
+
+		}
+		&.inactive{
+			cursor: not-allowed;
+		}
+	}
+	&:hover, &.selected{
+		&.exisiting, &.new-card{
+			background-color: $primary;
+			color: #fff;
+			&.large, &.small{
+				background-color: $primary;
+				color: #fff;
+			}
+		}
+	}
+	&.error{
+		border-color: $error;
+		color: $error;
+		&:hover{ border-color: $primary;}
+	}
+}
+
+.inactive{
+	color: $light-grey!important;
+	border-color: $key-grey!important;
+	background-color: $bg-lighter-grey!important;
+	cursor: not-allowed;
+}
+
+// Select Box
+.custom-select {
+	position: relative;
+	display: inline-block;
+	margin-right: 20px;
+	text-align: left;
+	width: 100%;
+	@media screen and (max-width: 767px){
+		display: none;
+	}
+	small{
+		display: block;
+		text-transform: uppercase;
+		font-size: 13px;
+		line-height: 13px;
+		color: $secondary;
+	}
+	select{
+		background: none;
+		display: none;
+	}
+}
+
+// Selected policy
+.select-selected {
+	background: #fff;
+	&:after{
+		position: absolute;
+		content: "";
+		top: 14px;
+		right: 10px;
+		background-image: url("../images/icon-arrow-down.svg");
+		background-repeat: no-repeat;
+		background-position: 50%;
+		height: 20px;
+		width: 20px;
+	}
+	&.select-arrow-active:after{
+	}
+}
+
+
+.select-items div,.select-selected {
+	color: $secondary;
+	cursor: pointer;
+	user-select: none;
+	text-transform: uppercase;
+	font-weight: 600;
+}
+
+.select-items {
+	position: absolute;
+	background: #fff;
+	top: 100%;
+	right: 0;
+	z-index: 100;
+	margin-top: 20px;
+	width: 355px;
+	left: 50%;
+	margin-left: -177.5px;
+	border-top: 1px solid $key-grey;;
+	border-radius: 5px;
+	box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
+	&:after{
+		content:"";
+		height: 20px;
+		background: #fff;
+		width: 20px;
+		border-top: 1px solid $key-grey;;
+		border-left: 1px solid $key-grey;;
+		transform: rotate(45deg);
+		position: absolute;
+		top: -10px;
+		left: 50%;
+		margin-left: -10px;
+	}
+	div{
+		padding: 20px;
+		border-left: 1px solid $key-grey;;
+		border-bottom: 1px solid $key-grey;;
+		border-right: 1px solid $key-grey;;
+		text-transform: none;
+		color: #333;
+		&:last-of-type{
+			border-radius: 0px 0px 5px 5px;
+		}
+	}
+}
+
+.select-hide {
+	display: none;
+}

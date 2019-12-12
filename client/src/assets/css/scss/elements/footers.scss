@@ -1,0 +1,33 @@
+#footer-primary{
+	background: #1A1A1A;
+	color: #888;
+
+	.footer-grid{
+		display: grid;
+		grid-template-columns: 1fr 1fr 2fr 1fr;
+		grid-gap: 1em;
+	}
+	.contact-info{
+		li{
+			address{
+
+			}
+			time{
+
+			}
+		}
+	}
+	.useful-links{
+		li{
+			a{
+
+			}
+		}
+	}
+}
+
+#footer-secondary{
+	background: #080808;
+	padding: 20px 0;
+	overflow: hidden;
+}
