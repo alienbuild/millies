@@ -225,3 +225,25 @@ exports.listBySearch = (req, res) => {
             });
         });
 };
+
+exports.listSearch = (req,res) => {
+    // Create query obj
+    const query = {};
+    // Asign search value to query.name
+    if (req.query.search){
+        query.name = {$regex: req.query.search, $options: 'i'};
+        // Assign category value to query.category
+        if (req.query.category && req.query.category !== 'All'){
+            query.category = req.query.category;
+        }
+        // Find product based on query obj with 2 props (search/cat)
+        Product.find(query, (err, products) => {
+            if (err){
+                return res.status(400).json({
+                    error: errorHandler(err)
+                })
+            }
+            res.json(products);
+        })
+    }
+};
