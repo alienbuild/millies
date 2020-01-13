@@ -21,3 +21,24 @@ export const getCategories = () => {
         })
         .catch(err => console.log('Error', err))
 };
+
+// Get filtered products
+export const getFilteredProducts = (offset, limit, filters = {}) => {
+    const data = {
+        limit, offset, filters
+    };
+    return fetch(`${API}/products/search/`, {
+        method: "POST",
+        headers: {
+            Accept: 'application/json',
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => {
+            console.log('Error', err);
+        })
+};

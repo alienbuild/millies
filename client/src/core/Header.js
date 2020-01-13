@@ -5,6 +5,7 @@ import { signout, isAuthenticated } from "../auth";
 const Header = ({ history }) => (
     <header id="header-primary">
             <div className="header__grid">
+                Header
                 <nav className="header__nav">
                     <ul>
                         {/*(TODO: Add Authentication check to show/hide links)*/}
