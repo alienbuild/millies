@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import Layout from '../core/Layout';
+import Default from '../layouts/Default';
 import { signup } from "../auth";
 
 const Signup = () => {
@@ -71,11 +71,11 @@ const Signup = () => {
     );
 
     return(
-        <Layout title="Signup" description="Signup description">
+        <Default title="Signup" description="Signup description">
             {showSuccess()}
             {showError()}
             {signUpForm()}
-        </Layout>
+        </Default>
     )
 };
 

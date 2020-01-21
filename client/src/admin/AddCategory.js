@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import { Link } from "react-router-dom";
-import Layout from '../core/Layout';
+import Default from '../layouts/Default';
 import { isAuthenticated } from "../auth";
 import { createCategory } from "./apiAdmin";
 
@@ -66,14 +66,14 @@ const AddCategory = () => {
     };
 
     return(
-        <Layout title="Add Category" description={`Hello ${user.name}. Ready to add a new category?`}>
+        <Default title="Add Category" description={`Hello ${user.name}. Ready to add a new category?`}>
             <Fragment>
                 {showSuccess()}
                 {showError()}
                 {newCategoryForm()}
                 {goBack()}
             </Fragment>
-        </Layout>
+        </Default>
     )
 };
 

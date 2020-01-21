@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from "react-router-dom";
-import Layout from '../core/Layout';
+import Default from '../layouts/Default';
 import { isAuthenticated } from "../auth";
 
 const Dashboard = () => {
@@ -42,11 +42,11 @@ const Dashboard = () => {
     };
 
     return (
-        <Layout title="Dashboard" description={`Welcome back ${name}`}>
+        <Default title="Dashboard" description={`Welcome back ${name}`}>
             {userLinks()}
             {userInfo()}
             {orderHistory()}
-        </Layout>
+        </Default>
     )
 };
 

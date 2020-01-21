@@ -1,9 +1,9 @@
 import React, {Fragment} from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import Menu from './Menu';
+import Header from '../core/Header';
+import Footer from '../core/Footer';
+import Menu from '../core/Menu';
 
-const Layout = ({title = 'Title', description = 'Description', className, children}) => (
+const Default = ({title = 'Title', description = 'Description', className, children}) => (
     <Fragment>
         <Header />
         <Menu />
@@ -16,4 +16,4 @@ const Layout = ({title = 'Title', description = 'Description', className, childr
     </Fragment>
 );
 
-export default Layout;
+export default Default;

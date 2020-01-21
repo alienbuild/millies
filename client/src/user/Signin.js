@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Redirect } from 'react-router-dom';
-import Layout from '../core/Layout';
+import Default from '../layouts/Default';
 import { signin, authenticate, isAuthenticated } from "../auth";
 
 const Signin = () => {
@@ -84,12 +84,12 @@ const Signin = () => {
     };
 
     return(
-        <Layout title="Signin" description="Signin description">
+        <Default title="Signin" description="Signin description">
             {showLoading()}
             {showError()}
             {signUpForm()}
             {redirectUser()}
-        </Layout>
+        </Default>
     )
 };
 

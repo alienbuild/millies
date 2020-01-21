@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from "react-router-dom";
-import Layout from '../core/Layout';
+import Default from '../layouts/Default';
 import { isAuthenticated } from "../auth";
 
 const AdminDashboard = () => {
@@ -31,10 +31,10 @@ const AdminDashboard = () => {
     };
 
     return (
-        <Layout title="AdminDashboard" description={`Welcome back ${name}`}>
+        <Default title="AdminDashboard" description={`Welcome back ${name}`}>
             {adminLinks()}
             {adminInfo()}
-        </Layout>
+        </Default>
     )
 };
 

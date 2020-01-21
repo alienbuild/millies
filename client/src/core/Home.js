@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Layout from './Layout';
+import Default from '../layouts/Default';
 import { getProducts } from "./apiCore";
 import Card from './Card';
 import Search from './Search';
@@ -42,7 +42,7 @@ const Home = () => {
     },[]);
 
     return(
-        <Layout title="Home page" description="Homepage description">
+        <Default title="Home page" description="Homepage description">
             <Search />
             <h2>Fresh Stock</h2>
             <div className="row">
@@ -53,7 +53,7 @@ const Home = () => {
             <div className="row">
                 {productsBySell.map((product,index) => (<Card key={index} product={product} />))}
             </div>
-        </Layout>
+        </Default>
     )
 };
 

@@ -28,7 +28,7 @@ export const getFilteredProducts = (offset, limit, filters = {}) => {
     const data = {
         limit, offset, filters
     };
-    return fetch(`${API}/products/search/`, {
+    return fetch(`${API}/products/by/search/`, {
         method: "POST",
         headers: {
             Accept: 'application/json',
@@ -60,6 +60,17 @@ export const list = params => {
 // Get categories
 export const read = (productId) => {
     return fetch(`${API}/product/${productId}`, {
+        method: "GET"
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log('Error', err))
+};
+
+// List related products
+export const listRelated = (productId) => {
+    return fetch(`${API}/products/related/${productId}`, {
         method: "GET"
     })
         .then(response => {

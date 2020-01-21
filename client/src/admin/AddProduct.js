@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from "react-router-dom";
-import Layout from '../core/Layout';
+import Default from '../layouts/Default';
 import { isAuthenticated } from "../auth";
 import { createProduct, getCategories } from "./apiAdmin";
 
@@ -163,14 +163,14 @@ const AddProduct = () => {
     };
 
     return(
-        <Layout title="Add Product" description={`Hello ${user.name}. Ready to add a new product?`}>
+        <Default title="Add Product" description={`Hello ${user.name}. Ready to add a new product?`}>
             <Fragment>
                 {showSuccess()}
                 {showError()}
                 {newProductForm()}
                 {goBack()}
             </Fragment>
-        </Layout>
+        </Default>
     )
 };
 

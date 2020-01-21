@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Layout from './Layout';
+import Default from '../layouts/Default';
 import { getCategories, getFilteredProducts } from "./apiCore";
 import Card from './Card';
 import Checkbox from './Checkbox';
@@ -20,7 +20,7 @@ const Shop = () => {
     const [limit, setLimit] = useState(6);
     const [offset, setOffset] = useState(0);
     const [size, setSize] = useState(0);
-    const [filteredResults, setFilteredResults] = useState(0);
+    const [filteredResults, setFilteredResults] = useState([]);
 
     // Load categories
     const init = () => {
@@ -36,7 +36,6 @@ const Shop = () => {
     // Load filtered results
     const loadFilteredResults = (newFilters) => {
         getFilteredProducts(offset, limit, newFilters).then( data => {
-            console.log('Data is', data);
             if (data.error){
                 setError(data.error);
             } else {
@@ -101,7 +100,7 @@ const Shop = () => {
     };
 
     return(
-        <Layout title="Shop page" description="Shop page description." className="container">
+        <Default title="Shop page" description="Shop page description." className="container">
             <div className="row">
                 <div className="col-4">
                     <h4>Filter by category</h4>
@@ -125,7 +124,7 @@ const Shop = () => {
                     {loadMoreButton()}
                 </div>
             </div>
-        </Layout>
+        </Default>
     )
 };
 
