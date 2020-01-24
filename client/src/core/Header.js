@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { cartTotal } from "./cartUtils";
 import { signout, isAuthenticated } from "../auth";
 
 const Header = ({ history }) => (
@@ -25,6 +26,7 @@ const Header = ({ history }) => (
                         )}
                     </ul>
                 </nav>
+                <span>Cart <sup>{cartTotal()}</sup> </span>
             </div>
     </header>
 );

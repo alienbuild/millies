@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Default from '../layouts/Default';
+import { Redirect } from 'react-router-dom';
 import ProductPage from '../layouts/ProductPage';
 import { read, listRelated } from "./apiCore";
 import Card from './Card';
-import Search from "./Search";
+import { addItem } from "./cartUtils";
 
 const Product = (props) => {
 
@@ -11,6 +11,7 @@ const Product = (props) => {
     const [product, setProduct] = useState({});
     const [relatedProduct, setRelatedProduct] = useState([]);
     const [error, setError] = useState(false);
+    const [redirect, setRedirect] = useState(false);
 
     const loadSingleProduct = productId => {
         read(productId).then(data => {
@@ -37,19 +38,34 @@ const Product = (props) => {
     };
 
     // Add to Cart Button
+    const addToCart = () => {
+        addItem(product, () => {
+            console.log('Added item to cart');
+            setRedirect(true);
+        })
+    };
+
+    // Handle redirect
+    const shouldRedirect = (redirect) => {
+        if (redirect){
+            return <Redirect to={'cart'} />
+        }
+    };
+
     const showAddToCartButton = () => {
         return (
-            <button>Add to Cart</button>
+            <button onClick={addToCart}>Add to Cart</button>
         )
     };
 
     useEffect(() => {
         const productId = props.match.params.productId;
         loadSingleProduct(productId);
-    },[]);
+    },[props]);
 
     return(
         <ProductPage title={product && product.name} description={product && product.description && product.description.substring(0,100)}>
+            {shouldRedirect(redirect)}
             <ul>
                 <li>Name: {product.name}</li>
                 <li>Price: {product.price}</li>
@@ -58,7 +74,7 @@ const Product = (props) => {
             </ul>
             {showAddToCartButton()}
             <h3>Related products</h3>
-            {relatedProduct && relatedProduct.map((product) => (<Card product={product} />))}
+            {relatedProduct && relatedProduct.map((product, index) => (<Card key={index} product={product} />))}
         </ProductPage>
     )
 };
