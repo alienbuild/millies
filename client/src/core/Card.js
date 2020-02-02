@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {addItem} from "./cartUtils";
 
-const Card = ({ product }) => {
+const Card = ({ product, showAddToCart = true }) => {
+
     // Add to Cart Button
     const addToCart = () => {
         addItem(product, () => {
@@ -10,11 +11,12 @@ const Card = ({ product }) => {
         })
     };
 
-    const showAddToCartButton = () => {
-        return (
+    const showAddToCartButton = (showAddToCart) => {
+        return showAddToCart && (
             <button onClick={addToCart}>Add to Cart</button>
         )
     };
+
     return(
         <li className="card">
             <Link to={`/product/${product._id}`}>
@@ -23,7 +25,7 @@ const Card = ({ product }) => {
             <div className="card-body">
                 {/*<p>{product.description.substring(0, 100)}</p>*/}
                 <p>£{product.price}</p>
-                {showAddToCartButton()}
+                {showAddToCartButton(showAddToCart)}
             </div>
         </li>
     )
