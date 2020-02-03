@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import Default from '../layouts/Default';
-import { getCart } from "./cartUtils";
+import { getCart, removeItem } from "./cartUtils";
 import Card from './Card';
 
 const Cart = () => {
@@ -9,14 +9,14 @@ const Cart = () => {
 
   useEffect(() => {
       setItems(getCart());
-  }, []);
+  }, [items]);
 
   const showItems = (items) => {
       return (
           <div>
               <h2>Your cart has {`${items.length}`} items.</h2>
               {items.map((product, index) => (
-                  <Card key={index} product={product} showAddToCart={false} />
+                  <Card key={index} product={product} showAddToCart={false} cartUpdate={true} showRemoveProductButton={true} />
               ))}
           </div>
       )
