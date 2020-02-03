@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import Default from '../layouts/Default';
 import { getCart, removeItem } from "./cartUtils";
+import Checkout from "./Checkout";
 import Card from './Card';
 
 const Cart = () => {
@@ -33,6 +34,7 @@ const Cart = () => {
         <Default title="Cart" description="Cart description">
             {items.length > 0 ? showItems(items) : noItemsMessage()}
             {/*Checkout options/shipping address/total/update/quantity*/}
+            <Checkout products={items} />
         </Default>
     )
 };
