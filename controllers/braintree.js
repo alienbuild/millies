@@ -9,12 +9,33 @@ const gateway = braintree.connect({
     merchantId: process.env.BRAINTREE_MERCHANT_ID
 });
 
+// Generate token
 exports.generateToken = (req,res) => {
     gateway.clientToken.generate({}, (err, response) => {
         if (err){
             res.status(500).send(err);
         } else {
             res.send(response);
+        }
+    })
+};
+
+// Process payment
+exports.processPayment = (req,res) => {
+    let nonceFromTheClient = req.body.paymentMethodNonce;
+    let amountFromTheClient = req.body.amount;
+    // Charge the user
+    let newTransaction = gateway.transaction.sale({
+        amount: amountFromTheClient,
+        paymentMethodNonce: nonceFromTheClient,
+        options: {
+            submitForSettlement: true
+        }
+    }, (err, result) => {
+        if (err){
+            res.status(500).json(err);
+        } else {
+            res.json(result);
         }
     })
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Default from '../layouts/Default';
-import { getProducts, getBraintreeClientToken } from "./apiCore";
+import { getProducts, getBraintreeClientToken, processPayment } from "./apiCore";
+import { emptyCart } from "./cartUtils";
 import Card from './Card';
 import { isAuthenticated } from "../auth";
 import DropIn from 'braintree-web-drop-in-react';
@@ -9,6 +10,7 @@ const Checkout = ({products}) => {
 
     // Init state
     const [data, setData] = useState({
+        loading: false,
         success: false,
         clientToken: null,
         error: '',
@@ -29,7 +31,6 @@ const Checkout = ({products}) => {
                 })
             } else {
                 setData({
-                    ...data,
                     clientToken: data.clientToken
                 })
             }
@@ -57,15 +58,30 @@ const Checkout = ({products}) => {
     };
 
     const buy = () => {
+        setData({ loading: true});
         let nonce;
         let getNonce = data.instance.requestPaymentMethod()
             .then( data => {
-                console.log('Buy method data is: ', data);
                 nonce = data.nonce;
-                console.log('Send nonce + total to process:', nonce, getTotal(products))
+                const paymentData = {
+                    paymentMethodNonce: nonce,
+                    amount: getTotal(products)
+                };
+                processPayment(userId, token, paymentData)
+                    .then(response => {
+                        setData({...data, success: response.success });
+                        // Empty cart
+                        emptyCart(() => {
+                           console.log('Payment success. Cart is now empty.');
+                            setData({ loading: false });
+                           // TODO: Expand callback to do something? redirect?
+                        });
+                        // Create new order
+                    })
+                    .catch( err => console.log(err) )
             })
             .catch( error => {
-                console.log('Drop in error:', error);
+                setData({ loading: false });
                 setData({
                     ...data,
                     error: error.message
@@ -79,7 +95,10 @@ const Checkout = ({products}) => {
             {data.clientToken !== null && products.length > 0 ? (
                 <div>
                     <DropIn options={{
-                        authorization: data.clientToken
+                        authorization: data.clientToken,
+                        paypal: {
+                            flow: 'vault'
+                        }
                     }} onInstance={instance => (data.instance = instance)} />
                     <button onClick={buy}>Pay</button>
                 </div>
@@ -92,9 +111,19 @@ const Checkout = ({products}) => {
         <div style={{ display: error ? 'block' : 'none'}}>{error}</div>
     );
 
+    // Success signage toggle
+    const showSuccess = success => (
+        <div style={{ display: success ? 'block' : 'none'}}>Thank! Your payment was successful.</div>
+    );
+
+    // Toggle loading TODO:Create loading screen
+    const toggleLoading = loading => loading && <div class="loading overlay">LOADING...</div>;
+
     return (
         <div>
             <h4>Total: ${getTotal()}</h4>
+            {toggleLoading(data.loading)}
+            {showSuccess(data.success)}
             {showError(data.error)}
             {showCheckout()}
         </div>
