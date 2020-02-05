@@ -58,9 +58,10 @@ const Checkout = ({products}) => {
     };
 
     const buy = () => {
-        setData({ loading: true});
+        setData({ loading: true });
         let nonce;
-        let getNonce = data.instance.requestPaymentMethod()
+        let getNonce = data.instance
+            .requestPaymentMethod()
             .then( data => {
                 nonce = data.nonce;
                 const paymentData = {
@@ -117,7 +118,7 @@ const Checkout = ({products}) => {
     );
 
     // Toggle loading TODO:Create loading screen
-    const toggleLoading = loading => loading && <div class="loading overlay">LOADING...</div>;
+    const toggleLoading = loading => loading && <div className="loading overlay">LOADING...</div>;
 
     return (
         <div>

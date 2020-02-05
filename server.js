@@ -12,6 +12,7 @@ const userRoutes = require('./routes/user');
 const categoryRoutes = require('./routes/category');
 const productRoutes = require('./routes/product');
 const braintreeRoutes = require('./routes/braintree');
+const orderRoute = require('./routes/order');
 
 // Init app
 const app = express();
@@ -40,6 +41,7 @@ app.use('/api', userRoutes);
 app.use('/api', categoryRoutes);
 app.use('/api', productRoutes);
 app.use('/api', braintreeRoutes);
+app.use('/api', orderRoute);
 
 // Start server
 app.listen(port, () => console.log(`Server is running port ${port}`));
