@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Default from '../layouts/Default';
-import { getProducts, getBraintreeClientToken, processPayment } from "./apiCore";
+import { getProducts, getBraintreeClientToken, processPayment, createOrder } from "./apiCore";
 import { emptyCart } from "./cartUtils";
 import Card from './Card';
 import { isAuthenticated } from "../auth";
@@ -41,6 +41,11 @@ const Checkout = ({products}) => {
         getToken(userId, token);
     }, []);
 
+    // Handle address
+    const handleAddress = event => {
+      setData({...data, address: event.target.value});
+    };
+
     // Calculate total
     const getTotal = () => {
         return products.reduce((currentValue, nextValue) => {
@@ -71,13 +76,29 @@ const Checkout = ({products}) => {
                 processPayment(userId, token, paymentData)
                     .then(response => {
                         setData({...data, success: response.success });
-                        // Empty cart
-                        emptyCart(() => {
-                           console.log('Payment success. Cart is now empty.');
-                            setData({ loading: false });
-                           // TODO: Expand callback to do something? redirect?
-                        });
-                        // Create new order
+                        // Create order
+                        const createOrderData = {
+                            products: products,
+                            transaction_id: response.transaction.id,
+                            amount: response.transaction.amount,
+                            address: data.address
+                        };
+                        createOrder((userId, token, createOrderData))
+                            .then( response => {
+                                // Empty cart
+                                emptyCart(() => {
+                                    console.log('Payment success. Cart is now empty.');
+                                    setData({
+                                        loading: false,
+                                        success: true
+                                    });
+                                    // TODO: Expand callback to do something? redirect?
+                                });
+                            })
+                            .catch(error => {
+                                console.log(error);
+                                setData({ loading: false })
+                            });
                     })
                     .catch( err => console.log(err) )
             })
@@ -95,6 +116,8 @@ const Checkout = ({products}) => {
         <div onBlur={() => setData({...data, error: ''})}>
             {data.clientToken !== null && products.length > 0 ? (
                 <div>
+                    <label htmlFor="delivery-address">Delivery address:</label>
+                    <textarea onChange={handleAddress} value={data.address}></textarea>
                     <DropIn options={{
                         authorization: data.clientToken,
                         paypal: {
