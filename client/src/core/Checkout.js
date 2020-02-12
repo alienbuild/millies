@@ -62,12 +62,15 @@ const Checkout = ({products}) => {
         )
     };
 
+    let deliveryAddress = data.address;
+
+    // Delivery address
     const buy = () => {
         setData({ loading: true });
         let nonce;
         let getNonce = data.instance
             .requestPaymentMethod()
-            .then( data => {
+            .then(data => {
                 nonce = data.nonce;
                 const paymentData = {
                     paymentMethodNonce: nonce,
@@ -75,15 +78,15 @@ const Checkout = ({products}) => {
                 };
                 processPayment(userId, token, paymentData)
                     .then(response => {
-                        setData({...data, success: response.success });
+                        console.log('user id is:', userId);
                         // Create order
                         const createOrderData = {
                             products: products,
                             transaction_id: response.transaction.id,
                             amount: response.transaction.amount,
-                            address: data.address
+                            address: deliveryAddress
                         };
-                        createOrder((userId, token, createOrderData))
+                        createOrder(userId, token, createOrderData)
                             .then( response => {
                                 // Empty cart
                                 emptyCart(() => {
@@ -104,10 +107,7 @@ const Checkout = ({products}) => {
             })
             .catch( error => {
                 setData({ loading: false });
-                setData({
-                    ...data,
-                    error: error.message
-                })
+                setData({...data, error: error.message})
             })
     };
 
