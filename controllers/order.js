@@ -2,9 +2,7 @@ const { Order, CartItem } = require('../models/order');
 const { errorHandler } = require('../helpers/dbErrorHandler');
 
 exports.create = (req, res) => {
-    console.log('Create order', req.body);
     req.body.order.user = req.profile;
-    console.log('Create order updated with profile', req.body);
     const order = new Order(req.body.order);
     order.save((err, data) => {
        if (err) {

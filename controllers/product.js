@@ -249,3 +249,25 @@ exports.listSearch = (req,res) => {
         })
     }
 };
+
+// Decrease product quantity on purchase
+exports.decreaseQuantity = (req,res,next) => {
+  let bulkOptions = req.body.order.products.map((product) => {
+      console.log('Decreased', req.body.order.product);
+      return {
+        updateOne: {
+            filter: { _id: product._id },
+            update: { $inc: {quantity: -product.count, sold: +product.count} }
+        }
+    }
+  });
+
+  Product.bulkWrite(bulkOptions, {}, (err, products) => {
+      if (err){
+          return res.status(400).json({
+              error: 'Could not update product.'
+          })
+      }
+      next();
+  });
+};
