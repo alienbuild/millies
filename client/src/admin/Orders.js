@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Default from '../layouts/Default';
 import { isAuthenticated } from "../auth";
 import { listOrders } from "./apiAdmin";
+import moment from 'moment';
 import {load} from "dotenv";
 
 const Orders = () => {
@@ -24,15 +25,41 @@ const Orders = () => {
         loadOrders();
     },[]);
 
-    const noOrders = orders => {
-        return orders.length < 1 ? <h4>No orders</h4> : null;
+    const showOrdersLength = () => {
+        if (orders.length > 0){
+            return (
+                <h1>Total orders: {orders.length}</h1>
+            )
+        } else {
+            return (
+                <h1>No orders.</h1>
+            )
+        }
     };
 
     return(
         <Default title="Orders" description={`Hello ${user.name}, you can manage all the orders here.`}>
             <Fragment>
-                {noOrders(orders)}
-                {JSON.stringify(orders)}
+                {showOrdersLength()}
+                {orders.map((order, index) => (
+                    <li key={index}>
+                        Order ID: {order._id}
+                        <br/>
+                        Status: {order.status}
+                        <br/>
+                        Transaction id: {order.transaction_id}
+                        <br/>
+                        Amount: £{order.amount}
+                        <br/>
+                        User: {order.user.name}
+                        <br/>
+                        Ordered on: {moment(order.createdAt).fromNow()}
+                        <br/>
+                        Delivery address: {order.address}
+                        <br/>
+                        Total products in the order: {order.products.length}
+                    </li>
+                ))}
             </Fragment>
         </Default>
     )
