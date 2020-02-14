@@ -11,7 +11,7 @@ const Dashboard = () => {
                 <h3>User Links</h3>
                 <ul>
                     <li><Link to="/cart">Cart</Link></li>
-                    <li><Link to="/profile/update">Update Profile</Link></li>
+                    <li><Link to={`/profile/${_id}`}>Update Profile</Link></li>
                 </ul>
             </div>
         )
