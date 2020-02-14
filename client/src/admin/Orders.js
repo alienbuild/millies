@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from "react-router-dom";
 import Default from '../layouts/Default';
 import { isAuthenticated } from "../auth";
-import { listOrders, getStatusValues } from "./apiAdmin";
+import { listOrders, getStatusValues, updateOrderStatus } from "./apiAdmin";
 import moment from 'moment';
 import {load} from "dotenv";
 
@@ -56,8 +56,17 @@ const Orders = () => {
         <div key={key}><input type="text" value={value} readOnly /></div>
     );
 
+    // Status change
     const handleStatusChange = (e, orderId) => {
       console.log('Update order status.');
+        updateOrderStatus(user._id, token, orderId, e.target.value)
+            .then(data => {
+                if(data.error){
+                    console.log('Status update failed');
+                } else {
+                    loadOrders();
+                }
+            })
     };
 
     const showStatus = (order) => {
