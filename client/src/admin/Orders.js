@@ -2,12 +2,13 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from "react-router-dom";
 import Default from '../layouts/Default';
 import { isAuthenticated } from "../auth";
-import { listOrders } from "./apiAdmin";
+import { listOrders, getStatusValues } from "./apiAdmin";
 import moment from 'moment';
 import {load} from "dotenv";
 
 const Orders = () => {
     const [orders,setOrders] = useState([]);
+    const [statusValues,setStatusValues] = useState([]);
     const {user,token} = isAuthenticated();
 
     const loadOrders = () => {
@@ -21,8 +22,20 @@ const Orders = () => {
             })
     };
 
+    const loadStatusValues = () => {
+        getStatusValues(user._id, token)
+            .then(data => {
+                if (data.error){
+                    console.log(data.error);
+                } else {
+                    setStatusValues(data);
+                }
+            })
+    };
+
     useEffect(() => {
         loadOrders();
+        loadStatusValues();
     },[]);
 
     // Calculate number of orders
@@ -43,6 +56,25 @@ const Orders = () => {
         <div key={key}><input type="text" value={value} readOnly /></div>
     );
 
+    const handleStatusChange = (e, orderId) => {
+      console.log('Update order status.');
+    };
+
+    const showStatus = (order) => {
+        return(
+            <div>
+                Status: {order.status}
+                <br/>
+                <select onChange={(e) => handleStatusChange(e, order._id)}>
+                    <option disabled selected>Update status</option>
+                    {statusValues.map((status, index) => (
+                        <option key={index} value={status}>{status}</option>
+                    ))}
+                </select>
+            </div>
+        )
+    };
+
     return(
         <Default title="Orders" description={`Hello ${user.name}, you can manage all the orders here.`}>
             <Fragment>
@@ -53,7 +85,7 @@ const Orders = () => {
                             <li key={index}>
                             Order ID: {order._id}
                             <br/>
-                            Status: {order.status}
+                            Status: {showStatus(order)}
                             <br/>
                             Transaction id: {order.transaction_id}
                             <br/>
