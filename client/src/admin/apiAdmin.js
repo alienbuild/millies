@@ -94,3 +94,64 @@ export const updateOrderStatus = (userId, token, orderId, status) => {
         })
         .catch(err => console.log('Error', err))
 };
+
+// Get all products
+export const getProducts = (userId, token) => {
+    return fetch(`${API}/products`, {
+        method: "GET",
+        headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log('Error', err))
+};
+
+// Get single product
+export const getProduct = (productId) => {
+    return fetch(`${API}/product/${productId}`, {
+        method: "GET",
+        headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log('Error', err))
+};
+
+// Update single product
+export const updateProduct = (productId, userId, token, product) => {
+    return fetch(`${API}/product/${productId}/${userId}`, {
+        method: "PUT",
+        headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: product
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log('Error', err))
+};
+
+// Delete single product
+export const deleteProduct = (productId, userId, token) => {
+    return fetch(`${API}/product/${productId}/${userId}`, {
+        method: "DELETE",
+        headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log('Error', err))
+};
