@@ -111,7 +111,7 @@ export const getProducts = (userId, token) => {
 };
 
 // Get single product
-export const getProduct = (productId) => {
+export const getProduct = (productId, token) => {
     return fetch(`${API}/product/${productId}`, {
         method: "GET",
         headers: {
