@@ -39,6 +39,7 @@ const ManageProducts = () => {
     return(
         <Default title="Manage products" description="Manage products CRUD">
             <h2>Manage products</h2>
+            <p>Total products:{products.length}</p>
             <ul>
                 {products.map((product,index) => (
                     <li key={index}>

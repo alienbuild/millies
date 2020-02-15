@@ -110,9 +110,9 @@ export const getProducts = (userId, token) => {
         .catch(err => console.log('Error', err))
 };
 
-// Get single product
+// Get single product (?limit=XX (TODO: Create pagination - undefined gives all))
 export const getProduct = (productId, token) => {
-    return fetch(`${API}/product/${productId}`, {
+    return fetch(`${API}/product/${productId}?limit=undefined`, {
         method: "GET",
         headers: {
             Accept: 'application/json',
