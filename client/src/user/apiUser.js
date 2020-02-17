@@ -34,6 +34,7 @@ export const update = (userId, token, user) => {
         .catch(err => console.log('Error', err))
 };
 
+// Update user
 export const updateUser = (user,next) => {
     if (typeof window !== 'undefined'){
         if (localStorage.getItem('jwt')){

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Default from '../layouts/Default';
-import { getProducts, getBraintreeClientToken, processPayment, createOrder } from "./apiCore";
+import { getProducts, getBraintreeClientToken, processPayment, createOrder, getTotalFromAPI } from "./apiCore";
 import { emptyCart } from "./cartUtils";
 import Card from './Card';
 import { isAuthenticated } from "../auth";
@@ -48,9 +48,11 @@ const Checkout = ({products}) => {
 
     // Calculate total
     const getTotal = () => {
-        return products.reduce((currentValue, nextValue) => {
-            return currentValue + nextValue.count * nextValue.price;
-        }, 0)
+        // return products.reduce((currentValue, nextValue) => {
+        //     return currentValue + nextValue.count * nextValue.price;
+        // }, 0)
+        console.log('Running get total');
+        getTotalFromAPI(products);
     };
 
     // Show checkout button?

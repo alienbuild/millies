@@ -1,4 +1,5 @@
 const { Order, CartItem } = require('../models/order');
+const Product = require('../models/product');
 const { errorHandler } = require('../helpers/dbErrorHandler');
 
 // Order by Id
@@ -64,4 +65,24 @@ exports.updateOrderStatus = (req,res) => {
           }
           res.json(order);
       })
+};
+
+// Get Total
+exports.getTotal = (req,res) => {
+  let productList = req.body;
+  let total = 0;
+  productList.forEach((product) => {
+      console.log('product id is',  product._id); // Returns correct id
+      Product.findById(product._id)
+          .select('price')
+          .exec((err, foundProduct) => {
+              if (err){
+                  console.log(`Error: Product with id ${product._id} not found.`);
+              } else {
+                  console.log('Product price is', foundProduct.price); // Returns correct price
+                  total += foundProduct.price;
+              }
+          })
+  });
+   console.log('Total is', total);
 };

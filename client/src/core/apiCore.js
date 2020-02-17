@@ -129,3 +129,19 @@ export const createOrder = (userId, token, createOrderData) => {
         })
         .catch(err => console.log('Error', err))
 };
+
+// Get total from API
+export const getTotalFromAPI = (products) => {
+    return fetch(`${API}/order/total`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(products)
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log('Error', err))
+};
