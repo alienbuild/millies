@@ -78,8 +78,7 @@ const Shop = () => {
       newFilters.filters[filterBy] = filters;
 
       if (filterBy === "prices"){
-        let priceValues = handlePrice(filters);
-        newFilters.filters[filterBy] = priceValues;
+        newFilters.filters[filterBy] = handlePrice(filters);
       }
 
       loadFilteredResults(myFilters.filters);

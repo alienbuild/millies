@@ -28,6 +28,7 @@ const Card = ({ product, showAddToCart = true, cartUpdate = false, showRemovePro
         }
     };
 
+    // Show cart update options
     const showCartUpdateOptions = (cartUpdate) => {
         return cartUpdate && <div>
             <input type="number" value={count} onChange={handleChange(product._id)} />
