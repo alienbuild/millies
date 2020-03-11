@@ -4,7 +4,7 @@ import Footer from '../core/Footer';
 import Menu from '../core/Menu';
 
 const ProductPage = ({title = 'Title', description = 'Description', className, children}) => (
-    <Fragment>
+    <>
         <Header />
         <Menu />
         <header>
@@ -13,7 +13,7 @@ const ProductPage = ({title = 'Title', description = 'Description', className, c
         </header>
         <div className={className}>{children}</div>
         <Footer />
-    </Fragment>
+    </>
 );
 
 export default ProductPage;
