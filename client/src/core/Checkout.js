@@ -52,7 +52,10 @@ const Checkout = ({products}) => {
         //     return currentValue + nextValue.count * nextValue.price;
         // }, 0)
         console.log('Running get total');
-        getTotalFromAPI(products);
+        getTotalFromAPI(products)
+            .then(response => {
+                console.log('Andddd the total is...', response.total)
+            })
     };
 
     // Show checkout button?
