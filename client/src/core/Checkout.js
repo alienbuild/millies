@@ -17,6 +17,7 @@ const Checkout = ({products}) => {
         instance: {},
         address: ''
     });
+    const [total, setTotal] = useState();
 
     // Get userId + token
     const userId = isAuthenticated() && isAuthenticated().user._id;
@@ -51,11 +52,13 @@ const Checkout = ({products}) => {
         // return products.reduce((currentValue, nextValue) => {
         //     return currentValue + nextValue.count * nextValue.price;
         // }, 0)
-        console.log('Running get total');
         getTotalFromAPI(products)
             .then(response => {
-                console.log('Andddd the total is...', response.total)
+                const rounded = Math.round(response.total * 100) / 100
+                setTotal(rounded);
             })
+            .catch((err) => console.log('Error getting total', err));
+        return total;
     };
 
     // Show checkout button?
@@ -149,13 +152,13 @@ const Checkout = ({products}) => {
     const toggleLoading = loading => loading && <div className="loading overlay">LOADING...</div>;
 
     return (
-        <div>
-            <h4>Total: ${getTotal()}</h4>
+        <>
+            <h4>Total: £{getTotal()}</h4>
             {toggleLoading(data.loading)}
             {showSuccess(data.success)}
             {showError(data.error)}
             {showCheckout()}
-        </div>
+        </>
     )
 };
 

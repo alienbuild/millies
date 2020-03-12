@@ -24,7 +24,7 @@ const Header = ({ history }) => (
                 )}
             </ul>
         </nav>
-        <span>Cart <sup>{cartTotal()}</sup> </span>
+        <span><Link to="/cart">Cart <sup>{cartTotal()}</sup></Link></span>
     </header>
 );
 

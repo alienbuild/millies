@@ -70,10 +70,12 @@ exports.updateOrderStatus = (req,res) => {
 // Get Total
 exports.getTotal = (req, res) => {
     const productList = req.body;
+    console.log('Products are', productList);
     let total = 0;
 
     const results = productList.map(async product => {
-        const foundProduct = await Product.findById(product._id).select('price').exec();
+        const foundProduct = await Product.findById(product._id).select('price quantity').exec();
+        console.log('Found', foundProduct);
         total += foundProduct.price;
         return foundProduct;
     });

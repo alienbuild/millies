@@ -13,6 +13,8 @@ import AddCategory from './admin/AddCategory';
 import AddProduct from './admin/AddProduct';
 import Orders from './admin/Orders';
 import Shop from './core/Shop';
+import Categories from './core/Categories';
+import CategorySpecific from './core/CategorySpecific';
 import Product from './core/Product';
 import Cart from './core/Cart';
 import Profile from './user/Profile';
@@ -24,6 +26,8 @@ const Routes = () => {
             <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/shop" exact component={Shop} />
+                <Route path="/categories/all" exact component={Categories} />
+                <Route path="/categories/:categoryId" exact component={CategorySpecific} />
                 <Route path="/signin" exact component={Signin} />
                 <Route path="/signup" exact component={Signup} />
                 <Route path="/product/:productId" exact component={Product} />
