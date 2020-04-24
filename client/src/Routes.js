@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // Components/Routes
 import PrivateRoute from './auth/PrivateRoute';
 import AdminRoute from './auth/AdminRoute';
-import Home from './core/Home';
+import Home from './core/Pages/Home';
 import Signup from './user/Signup';
 import Signin from './user/Signin';
 import Dashboard from './user/UserDashboard';
@@ -12,11 +12,11 @@ import AdminDashboard from './user/AdminDashboard';
 import AddCategory from './admin/AddCategory';
 import AddProduct from './admin/AddProduct';
 import Orders from './admin/Orders';
-import Shop from './core/Shop';
-import Categories from './core/Categories';
-import CategorySpecific from './core/CategorySpecific';
-import Product from './core/Product';
-import Cart from './core/Cart';
+import Shop from './core/Pages/Shop';
+import Categories from './core/Pages/Category/Categories';
+import CategorySpecific from './core/Pages/Category/CategorySpecific';
+import Product from './core/Pages/Product';
+import Cart from './core/Pages/Cart';
 import Profile from './user/Profile';
 import ManageProducts from './admin/ManageProducts';
 

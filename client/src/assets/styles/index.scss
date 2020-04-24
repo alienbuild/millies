@@ -1,0 +1,11 @@
+// Override default variables before the import
+$body-bg: #fff;
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+
+// base styles
+@import 'base.scss';
+
+// does nothing - sets html background to red, which is overridden - just to show an example.
+@import 'components/testComponent.scss';

@@ -150,6 +150,24 @@ exports.list = (req, res) => {
 
 };
 
+// Get products by category
+exports.productsByCat = (req,res) => {
+    let limit = req.query.limit ? parseInt(req.query.limit) : 6;
+    Product.find({
+        category: '5ded487d14e2ed8624ddc96e'
+    })
+        .limit(limit)
+        .populate('category', '_id name')
+        .exec((err,products) => {
+            if (err){
+                return res.status(400).json({
+                    error: 'Products not found for category.'
+                })
+            }
+            res.json(products);
+        })
+};
+
 // Related products
 exports.listRelated = (req,res) => {
     let limit = req.query.limit ? parseInt(req.query.limit) : 6;
@@ -190,9 +208,6 @@ exports.listBySearch = (req, res) => {
     let limit = req.body.limit ? parseInt(req.body.limit) : 100;
     let offset = parseInt(req.body.offset);
     let findArgs = {};
-
-    // console.log(order, sortBy, limit, offset, req.body.filters);
-    // console.log("findArgs", findArgs);
 
     for (let key in req.body.filters) {
         if (req.body.filters[key].length > 0) {

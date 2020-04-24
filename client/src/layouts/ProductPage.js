@@ -1,17 +1,12 @@
-import React, {Fragment} from 'react';
-import Header from '../core/Header';
-import Footer from '../core/Footer';
-import Menu from '../core/Menu';
+import React from 'react';
+import Header from '../core/UI/Header';
+import Footer from '../core/UI/Footer';
+import Menu from '../core/UI/Menu';
 
 const ProductPage = ({title = 'Title', description = 'Description', className, children}) => (
     <>
-        <Header />
-        <Menu />
-        <header>
-            <h2>{title}</h2>
-            <p>{description}</p>
-        </header>
-        <div className={className}>{children}</div>
+        <Header title={title} description={description}/>
+        <main className={className}>{children}</main>
         <Footer />
     </>
 );
