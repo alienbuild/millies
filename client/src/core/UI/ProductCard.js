@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { addItem, updateItem, removeItem } from "../Misc/cartUtils";
+import Card from "react-bootstrap/Card";
 
 const ProductCard = ({ product, showAddToCart = true, cartUpdate = false, showRemoveProductButton = false }) => {
 
@@ -43,17 +44,20 @@ const ProductCard = ({ product, showAddToCart = true, cartUpdate = false, showRe
     };
 
     return(
-        <li className="card">
+        <Card>
             <Link to={`/product/${product._id}`}>
-                <div className="card-header">{product.name}</div>
+            <Card.Img variant="top" src="https://fakeimg.pl/350x200/ff0000/000" />
             </Link>
-            <div className="card-body">
+            <Card.Body>
+                <Card.Title><Link to={`/product/${product._id}`}>{product.name}</Link></Card.Title>
                 <p>£{product.price}</p>
+            </Card.Body>
+            <Card.Footer>
                 {showAddToCartButton(showAddToCart)}
                 {showCartUpdateOptions(cartUpdate)}
                 {showRemoveButton(showRemoveProductButton)}
-            </div>
-        </li>
+            </Card.Footer>
+        </Card>
     )
 };
 

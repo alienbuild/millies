@@ -5,6 +5,7 @@ import ProductCard from '../UI/ProductCard';
 import Search from './Search/Search';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import CardDeck from "react-bootstrap/CardDeck";
 
 const Home = () => {
     // Init state
@@ -50,7 +51,9 @@ const Home = () => {
                     <Row>
                         <Col>
                             <h2>Fresh Stock</h2>
-                            {productsByArrival.map((product,index) => (<ProductCard key={index} product={product} />))}
+                            <CardDeck>
+                                {productsByArrival.map((product,index) => (<ProductCard key={index} product={product} />))}
+                            </CardDeck>
                         </Col>
                     </Row>
                 </section>
@@ -58,7 +61,9 @@ const Home = () => {
                     <Row>
                         <Col>
                             <h2>Popular Items</h2>
-                            {productsBySell.map((product,index) => (<ProductCard key={index} product={product} />))}
+                            <CardDeck>
+                                {productsBySell.map((product,index) => (<ProductCard key={index} product={product} />))}
+                            </CardDeck>
                         </Col>
                     </Row>
                 </section>

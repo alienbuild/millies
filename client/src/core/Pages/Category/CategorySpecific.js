@@ -5,10 +5,12 @@ import {Link} from "react-router-dom";
 import ProductCard from "../../UI/ProductCard";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import CardDeck from "react-bootstrap/CardDeck";
 
 const CategorySpecific = ({match}) => {
 
     // Init state
+    const [isLoading, setIsLoading] = useState(true);
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(false);
 
@@ -19,6 +21,7 @@ const CategorySpecific = ({match}) => {
                 setError(data.error);
             } else {
                 setProducts(data);
+                setIsLoading(false);
             }
         })
     };
@@ -31,11 +34,12 @@ const CategorySpecific = ({match}) => {
         <Default title="Category page" description="Category page description." className="container">
             <Row>
                 <Col>
-                    <ul>
+                    <CardDeck>
                         {products && products.map((product, index) => (
                             <ProductCard key={index} product={product} />
                         ))}
-                    </ul>
+                    </CardDeck>
+                    {products.length == 0 && !isLoading ? 'No products found' : null}
                 </Col>
             </Row>
         </Default>
