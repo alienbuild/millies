@@ -14,12 +14,13 @@ import AddProduct from './admin/AddProduct';
 import Orders from './admin/Orders';
 import Shop from './core/Pages/Shop';
 import Categories from './core/Pages/Category/Categories';
-import CategorySpecific from './core/Pages/Category/CategorySpecific';
+import Category from './core/Pages/Category/Category';
 import Product from './core/Pages/Product';
 import Cart from './core/Pages/Cart';
 import Profile from './user/Profile';
 import ManageProducts from './admin/ManageProducts';
 import SearchResults from "./core/Pages/Search/SearchResults";
+import NotFound from "./core/Pages/NotFound";
 
 const Routes = () => {
     return (
@@ -29,7 +30,7 @@ const Routes = () => {
                 <Route path="/shop" exact component={Shop} />
                 <Route path="/search-results" exact render={(props) => <SearchResults {...props}/>} />
                 <Route path="/categories/all" exact component={Categories} />
-                <Route path="/categories/:categoryId" exact component={CategorySpecific} />
+                <Route path="/categories/:categoryId" exact component={Category} />
                 <Route path="/signin" exact component={Signin} />
                 <Route path="/signup" exact component={Signup} />
                 <Route path="/product/:productId" exact component={Product} />
@@ -41,6 +42,7 @@ const Routes = () => {
                 <AdminRoute path="/admin/product/add" component={AddProduct} exact />
                 <AdminRoute path="/admin/orders" component={Orders} exact />
                 <AdminRoute path="/admin/products" component={ManageProducts} exact />
+                <Route component={NotFound} />
             </Switch>
         </BrowserRouter>
     )

@@ -7,7 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CardDeck from "react-bootstrap/CardDeck";
 
-const CategorySpecific = ({match}) => {
+const Category = ({match}) => {
 
     // Init state
     const [isLoading, setIsLoading] = useState(true);
@@ -46,4 +46,4 @@ const CategorySpecific = ({match}) => {
     )
 };
 
-export default CategorySpecific;
+export default Category;

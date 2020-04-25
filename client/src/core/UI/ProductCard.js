@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { addItem, updateItem, removeItem } from "../Misc/cartUtils";
 import Card from "react-bootstrap/Card";
+import Toast from "react-bootstrap/Toast";
 
 const ProductCard = ({ product, showAddToCart = true, cartUpdate = false, showRemoveProductButton = false }) => {
 
@@ -10,7 +11,7 @@ const ProductCard = ({ product, showAddToCart = true, cartUpdate = false, showRe
     // Add to cart button
     const addToCart = () => {
         addItem(product, () => {
-            console.log('Added item to cart');
+            console.log('Added to cart.');
         })
     };
 
@@ -46,7 +47,7 @@ const ProductCard = ({ product, showAddToCart = true, cartUpdate = false, showRe
     return(
         <Card>
             <Link to={`/product/${product._id}`}>
-            <Card.Img variant="top" src="https://fakeimg.pl/350x200/ff0000/000" />
+            <Card.Img variant="top" src="https://fakeimg.pl/350x200/333/fff" />
             </Link>
             <Card.Body>
                 <Card.Title><Link to={`/product/${product._id}`}>{product.name}</Link></Card.Title>
