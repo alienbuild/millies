@@ -8,7 +8,7 @@ import Home from './core/Pages/Home';
 import Signup from './user/Signup';
 import Signin from './user/Signin';
 import Dashboard from './user/UserDashboard';
-import AdminDashboard from './user/AdminDashboard';
+import AdminDashboard from './admin/AdminDashboard';
 import AddCategory from './admin/AddCategory';
 import AddProduct from './admin/AddProduct';
 import Orders from './admin/Orders';
@@ -19,6 +19,7 @@ import Product from './core/Pages/Product';
 import Cart from './core/Pages/Cart';
 import Profile from './user/Profile';
 import ManageProducts from './admin/ManageProducts';
+import SearchResults from "./core/Pages/Search/SearchResults";
 
 const Routes = () => {
     return (
@@ -26,6 +27,7 @@ const Routes = () => {
             <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/shop" exact component={Shop} />
+                <Route path="/search-results" exact render={(props) => <SearchResults {...props}/>} />
                 <Route path="/categories/all" exact component={Categories} />
                 <Route path="/categories/:categoryId" exact component={CategorySpecific} />
                 <Route path="/signin" exact component={Signin} />

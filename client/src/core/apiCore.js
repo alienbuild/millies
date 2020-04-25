@@ -23,6 +23,17 @@ export const getCategories = () => {
         .catch(err => console.log('Error', err))
 };
 
+// Get products by category
+export const getProductsByCat = (category) => {
+  return fetch(`${API}/products/by/category/${category}`,{
+      method: "GET"
+  })
+      .then(response => {
+          return response.json();
+      })
+      .catch(err => console.log('Error', err))
+};
+
 // Get filtered products
 export const getFilteredProducts = (offset, limit, filters = {}) => {
     const data = {

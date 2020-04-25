@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Default from '../../layouts/Default';
 import { getCategories, getFilteredProducts } from "../apiCore";
-import Card from '../Card';
-import Checkbox from '../Checkbox';
-import RadioBox from '../RadioBox';
-import { prices } from "../fixedPrices";
+import ProductCard from '../UI/ProductCard';
+import Checkbox from '../UI/Elements/Checkbox';
+import RadioBox from '../UI/Elements/RadioBox';
+import { prices } from "../Misc/fixedPrices";
 
 const Shop = () => {
 
@@ -117,7 +117,7 @@ const Shop = () => {
                         Main
                         <ul>
                             {filteredResults && filteredResults.map((product, index) => (
-                                <Card key={index} product={product} />
+                                <ProductCard key={index} product={product} />
                             ))}
                         </ul>
                         <hr />

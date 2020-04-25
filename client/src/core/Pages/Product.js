@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import ProductPage from '../../layouts/ProductPage';
 import { read, listRelated } from "../apiCore";
-import Card from '../Card';
-import { addItem } from "../cartUtils";
+import ProductCard from '../UI/ProductCard';
+import { addItem } from "../Misc/cartUtils";
 
 const Product = (props) => {
 
@@ -76,7 +76,7 @@ const Product = (props) => {
                 </ul>
                 {showAddToCartButton()}
                 <h3>Related products</h3>
-                {relatedProduct && relatedProduct.map((product, index) => (<Card key={index} product={product} />))}
+                {relatedProduct && relatedProduct.map((product, index) => (<ProductCard key={index} product={product} />))}
             </div>
         </ProductPage>
     )

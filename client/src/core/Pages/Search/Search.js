@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { getCategories, list } from "./apiCore";
-import Card from './Card';
+import { Redirect } from 'react-router-dom';
+import { getCategories, list } from "../../apiCore";
+import ProductCard from '../../UI/ProductCard';
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import {Link} from "react-router-dom";
 
 const Search = () => {
     const [data, setData] = useState({
@@ -28,7 +32,6 @@ const Search = () => {
     },[]);
 
     const searchData = () => {
-        console.log(search, category);
         if (search){
             list({search: search || undefined, category: category})
                 .then((response) => {
@@ -81,20 +84,24 @@ const Search = () => {
         return(
             <div>
                 <h2>{searchMessage(searched, results)}</h2>
-                <div>{results.map((product, index) => (
-                    <Card key={index} product={product} />
-                ))}</div>
+                {searched ? <Redirect to={{
+                    pathname: "/search-results",
+                    state: { results }
+                }} />: null}
             </div>
 
         )
     };
 
     return (
-        <div>
-            <h4>Search bar</h4>
-            {searchForm()}
-            {searchedProducts(results)}
-        </div>
+            <Row>
+                <Col><Link to={"/"}><img src={"https://fakeimg.pl/200x100/333/fff"} /></Link></Col>
+                <Col>
+                    <h4>Search</h4>
+                    {searchForm()}
+                    {searchedProducts(results)}
+                </Col>
+            </Row>
     )
 };
 

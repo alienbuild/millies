@@ -19,7 +19,6 @@ router.put('/product/:productId/:userId', requireSignin, isAuth, isAdmin, update
 // Get all products
 router.get('/products', list);
 
-// Get products by category
 router.get('/products/by/category/:categoryId', productsByCat);
 
 // Get related products
@@ -37,5 +36,6 @@ router.get("/products/search", listSearch);
 // Param watchers
 router.param('userId', userById);
 router.param('productId', productById);
+router.param('categoryId', productsByCat);
 
 module.exports = router;

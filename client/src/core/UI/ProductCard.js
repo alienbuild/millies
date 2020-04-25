@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import { addItem, updateItem, removeItem } from "./cartUtils";
+import { addItem, updateItem, removeItem } from "../Misc/cartUtils";
 
-const Card = ({ product, showAddToCart = true, cartUpdate = false, showRemoveProductButton = false }) => {
+const ProductCard = ({ product, showAddToCart = true, cartUpdate = false, showRemoveProductButton = false }) => {
 
     const [count, setCount] = useState(product.count);
 
@@ -57,4 +57,4 @@ const Card = ({ product, showAddToCart = true, cartUpdate = false, showRemovePro
     )
 };
 
-export default Card;
+export default ProductCard;

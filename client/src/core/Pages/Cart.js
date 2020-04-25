@@ -1,9 +1,9 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import Default from '../../layouts/Default';
-import { getCart, removeItem } from "../cartUtils";
-import Checkout from "../Checkout";
-import Card from '../Card';
+import { getCart, removeItem } from "../Misc/cartUtils";
+import Checkout from "./Checkout";
+import ProductCard from '../UI/ProductCard';
 
 const Cart = () => {
   const [items, setItems] = useState([]);
@@ -17,7 +17,7 @@ const Cart = () => {
           <div>
               <h2>Your cart has {`${items.length}`} items.</h2>
               {items.map((product, index) => (
-                  <Card key={index} product={product} showAddToCart={false} cartUpdate={true} showRemoveProductButton={true} />
+                  <ProductCard key={index} product={product} showAddToCart={false} cartUpdate={true} showRemoveProductButton={true} />
               ))}
           </div>
       )
@@ -32,9 +32,11 @@ const Cart = () => {
 
     return(
         <Default title="Cart" description="Cart description">
-            {items.length > 0 ? showItems(items) : noItemsMessage()}
-            {/*Checkout options/shipping address/total/update/quantity*/}
-            <Checkout products={items} />
+            <div className="container">
+                {items.length > 0 ? showItems(items) : noItemsMessage()}
+                {/*Checkout options/shipping address/total/update/quantity*/}
+                <Checkout products={items} />
+            </div>
         </Default>
     )
 };

@@ -3,8 +3,8 @@ import { Link, Redirect } from "react-router-dom";
 import Default from '../layouts/Default';
 import { isAuthenticated } from "../auth";
 import { read, update, updateUser } from "./apiUser";
-import Search from "../core/Search";
-import Card from "../core/Card";
+import Search from "../core/Pages/Search/Search";
+import ProductCard from "../core/UI/ProductCard";
 
 const Profile = ({match}) => {
     // Init state

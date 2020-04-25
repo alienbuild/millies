@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Default from '../layouts/Default';
-import { getProducts, getBraintreeClientToken, processPayment, createOrder, getTotalFromAPI } from "./apiCore";
-import { emptyCart } from "./cartUtils";
-import Card from './Card';
-import { isAuthenticated } from "../auth";
+import Default from '../../layouts/Default';
+import { getProducts, getBraintreeClientToken, processPayment, createOrder, getTotalFromAPI } from "../apiCore";
+import { emptyCart } from "../Misc/cartUtils";
+import ProductCard from '../UI/ProductCard';
+import { isAuthenticated } from "../../auth";
 import DropIn from 'braintree-web-drop-in-react';
 
 const Checkout = ({products}) => {

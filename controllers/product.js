@@ -151,10 +151,10 @@ exports.list = (req, res) => {
 };
 
 // Get products by category
-exports.productsByCat = (req,res) => {
+exports.productsByCat = (req,res, next, id) => {
     let limit = req.query.limit ? parseInt(req.query.limit) : 6;
     Product.find({
-        category: '5ded487d14e2ed8624ddc96e'
+        category: id
     })
         .limit(limit)
         .populate('category', '_id name')

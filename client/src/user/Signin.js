@@ -44,19 +44,21 @@ const Signin = () => {
 
     // Signin form markup
     const signUpForm = () => (
-        <form>
-            <div>
-                <label htmlFor="email">Email</label>
-                <input type="email" name="email" onChange={handleChange('email')} value={email} />
+            <div className="container">
+                <form>
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <input type="email" name="email" onChange={handleChange('email')} value={email} />
+                    </div>
+                    <div>
+                        <label htmlFor="password">Password</label>
+                        <input type="password" name="password" onChange={handleChange('password')} value={password} />
+                    </div>
+                    <div>
+                        <button type="submit" onClick={(e) => clickSubmit(e)}>Submit</button>
+                    </div>
+                </form>
             </div>
-            <div>
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" onChange={handleChange('password')} value={password} />
-            </div>
-            <div>
-                <button type="submit" onClick={(e) => clickSubmit(e)}>Submit</button>
-            </div>
-        </form>
     );
 
     // Handle errors
