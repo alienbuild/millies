@@ -95,7 +95,7 @@ const Search = () => {
 
     return (
             <Row>
-                <Col><Link to={"/"}><img src={"https://fakeimg.pl/200x100/333/fff"} /></Link></Col>
+                <Col><Link to={"/"}><img src={"https://fakeimg.pl/200x75/333/fff/?text=Logo"} /></Link></Col>
                 <Col>
                     <h4>Search</h4>
                     {searchForm()}

@@ -22,17 +22,22 @@ import ManageProducts from './admin/ManageProducts';
 import SearchResults from "./core/Pages/Search/SearchResults";
 import NotFound from "./core/Pages/NotFound";
 
+// Redux
+import { Provider } from 'react-redux';
+import store from './store';
+
 const Routes = () => {
     return (
-        <BrowserRouter>
+        <Provider store={store}>
+            <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/shop" exact component={Shop} />
                 <Route path="/search-results" exact render={(props) => <SearchResults {...props}/>} />
                 <Route path="/categories/all" exact component={Categories} />
                 <Route path="/categories/:categoryId" exact component={Category} />
-                <Route path="/signin" exact component={Signin} />
-                <Route path="/signup" exact component={Signup} />
+                <Route path="/login" exact component={Signin} />
+                <Route path="/register" exact component={Signup} />
                 <Route path="/product/:productId" exact component={Product} />
                 <Route path="/cart" exact component={Cart} />
                 <PrivateRoute path="/user/dashboard" component={Dashboard} exact />
@@ -45,6 +50,7 @@ const Routes = () => {
                 <Route component={NotFound} />
             </Switch>
         </BrowserRouter>
+        </Provider>
     )
 };
 

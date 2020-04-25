@@ -18,8 +18,8 @@ const Menu = ({ history }) => (
                     {/*User is not authenticated*/}
                     {!isAuthenticated() && (
                         <>
-                            <Nav.Item as="li"><NavLink to="/signin" activeClassName="active">Signin</NavLink></Nav.Item>
-                            <Nav.Item as="li"><NavLink to="/signup" activeClassName="active">Signup</NavLink></Nav.Item>
+                            <Nav.Item as="li"><NavLink to="/login" activeClassName="active">Login</NavLink></Nav.Item>
+                            <Nav.Item as="li"><NavLink to="/register" activeClassName="active">Register</NavLink></Nav.Item>
                         </>
                     )}
 
