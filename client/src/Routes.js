@@ -25,6 +25,7 @@ import NotFound from "./core/Pages/NotFound";
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
+import ProductUpsell from "./core/Pages/ProductUpsell";
 
 const Routes = () => {
     return (
@@ -39,6 +40,7 @@ const Routes = () => {
                 <Route path="/login" exact component={Signin} />
                 <Route path="/register" exact component={Signup} />
                 <Route path="/product/:productId" exact component={Product} />
+                <Route path={"/cart/added-to-cart"} exact component={ProductUpsell} />
                 <Route path="/cart" exact component={Cart} />
                 <PrivateRoute path="/user/dashboard" component={Dashboard} exact />
                 <PrivateRoute path="/profile/:userId" component={Profile} exact />

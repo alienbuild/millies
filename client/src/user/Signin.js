@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 
 // Redux imports
 import { connect } from 'react-redux';
-import { setAlert } from "../actions/alert";
+import {removeAlert, setAlert} from "../actions/alert";
 
 // Layout and method imports
 import Default from '../layouts/Default';
@@ -14,7 +14,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 
-const Signin = ({setAlert, alerts}) => {
+const Signin = ({setAlert, removeAlert, alerts}) => {
 
     // Init state
     const [values, setValues] = useState({
@@ -59,7 +59,7 @@ const Signin = ({setAlert, alerts}) => {
         <div className="container">
             {showLoading()}
             {alerts !== null && alerts.length > 0 && alerts.map((alert) => (
-                <Alert key={alert.id} variant={alert.alertType}>
+                <Alert key={alert.id} variant={alert.alertType} onClose={() => removeAlert(alert.id)} dismissible>
                     {alert.msg}
                 </Alert>
             ))}
@@ -110,4 +110,4 @@ const mapStateToProps = state => ({
    alerts: state.alert
 });
 
-export default connect(mapStateToProps, { setAlert })(Signin);
+export default connect(mapStateToProps, { setAlert, removeAlert })(Signin);

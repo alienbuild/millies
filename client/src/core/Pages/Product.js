@@ -49,7 +49,10 @@ const Product = (props) => {
     // Handle redirect
     const shouldRedirect = (redirect) => {
         if (redirect){
-            return <Redirect to={'cart'} />
+            return <Redirect to={{
+                pathname: '/cart/added-to-cart',
+                state: { product }
+            }} />
         }
     };
 
