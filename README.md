@@ -40,7 +40,7 @@ Scribbling here for convenience. Fully fledged documentation with working exampl
 POST http://localhost:5000/api/signup
 {
 	"name": "John Doe",
-	"email": "john@h-tune.co.uk",
+	"email": "john@google.co.uk",
 	"password": "@secureP455w0rD!"
 }
 ```
@@ -49,7 +49,7 @@ POST http://localhost:5000/api/signup
 ```
 POST http://localhost:5000/api/signin
 {
-	"email": "john@h-tune.co.uk",
+	"email": "john@google.co.uk",
 	"password": "@secureP455w0rD!"
 }
 ```
