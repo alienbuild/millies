@@ -18,6 +18,22 @@ export const signup = (user) => {
         })
 };
 
+// Forgot password
+export const forgotPassword = (user) => {
+    return fetch(`${API}/forgot-password`, {
+        method: "PUT",
+        headers: {
+            Accept: 'application/json',
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+    }).then(response => {
+        return response.json();
+    }).catch(err => {
+        console.log('Error', err);
+    })
+};
+
 // Handle user signin
 export const signin = (user) => {
     return fetch(`${API}/signin`, {

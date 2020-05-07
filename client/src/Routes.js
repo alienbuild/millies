@@ -26,6 +26,7 @@ import NotFound from "./core/Pages/NotFound";
 import { Provider } from 'react-redux';
 import store from './store';
 import ProductUpsell from "./core/Pages/ProductUpsell";
+import Forgot from "./user/Forgot";
 
 const Routes = () => {
     return (
@@ -38,6 +39,7 @@ const Routes = () => {
                 <Route path="/categories/all" exact component={Categories} />
                 <Route path="/categories/:categoryId" exact component={Category} />
                 <Route path="/login" exact component={Signin} />
+                <Route path="/auth/password/forgot" exact component={Forgot} />
                 <Route path="/register" exact component={Signup} />
                 <Route path="/product/:productId" exact component={Product} />
                 <Route path={"/cart/added-to-cart"} exact component={ProductUpsell} />

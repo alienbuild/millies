@@ -88,6 +88,9 @@ exports.forgotPassword = (req, res) => {
            } else {
                // TODO: Sign up and setup sendgrid
                console.log(`Email sent to ${email}.`)
+               return res.json({
+                   message: `Email has been sent to ${email}`
+               })
                // sgMail
                //     .send(emailData)
                //     .then(sent => {
