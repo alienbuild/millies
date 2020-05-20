@@ -1,0 +1,103 @@
+Millies Empawium
+
+Hey Kim
+
+So I've listed a bunch of pages that I think the ecommerce site will need to have but I'm open to suggestions on adding/remove pages. I will need designs for both desktop and mobiles and as this is all built using modern tech stack feel free to go wild with functional components and even switching the layout of the site completely for mobile if needed, there's no constraints. I'm interested in approaching things a little differently too, such as maybe the round millie logo in the bottom right which also doubles up as a live chat/support? Not sure if that's a good way to go or not though. 
+
+In addition to the designs I would also like to have a UI Component library/style guide. Trust building is of high importance for the site so I'd like signposting or mentioning of how Millies Empawium sponors the free services offered at PETAZ and is actively trying to find new ways of helping owners look after their pets. Also a big reference to reviews, trustpilot, social media and the like for that trust emphasis.  
+
+In terms of products I haven't got any accounts setup with suppliers yet but they'll be the usual suspects, feel free to reference some of the sites below for ideas of the products that will be sold. There will also be an own brand food range. 
+
+Timescale is super flexible. I'm keen to get it rolling, but at the same time there's no rush. 
+
+------ Competitors ------
+https://www.jollyes.co.uk
+https://www.petplanet.co.uk
+https://www.petshop.co.uk
+https://www.viovet.co.uk
+https://www.pet-supermarket.co.uk
+https://www.monsterpetsupplies.co.uk
+https://www.thenaturalpetstore.co.uk
+
+
+------ Sitemap ------
+Homepage 
+
+Shop 
+	*This page may not be necessary. 
+
+Login
+	*Options to login via Facebook, Google or PETAZ
+
+Register
+	*Options to register via Facebook, Google with the possibility of also registering for PETAZ
+
+Forgot Password
+
+Thank you/Success Page
+
+Categories
+	(If you need further sub categories literally reference jollyes.co.uk)
+	Dog
+	Cat
+	Small Pet
+	Bird & Wildlife
+	Fish
+	Reptile
+	Offers
+
+Product Page
+	*Some food related items can be on a subscription basis such as foods
+	Added to Cart / Upsell 
+	*I was thinking kind of like Amazon where you get a success signposting with options to edit basket or checkout but also a bunch of 'similar people bought' or 'related products' components under.
+
+Your Account
+	Update
+	Your Orders
+	Your Pets
+		- Add Pet (with option to also register it with PETAZ if it is a dog or cat)
+			- *Type (Cat, Dog, Bird etc)
+			- *Breed (Border Collie, Labrador, Husky, German Shepard etc.)
+			- *Image 
+			- Images *If registering with PETAZ also the user will need to supply a minimum of 20 pictures for the AI to recognise their pet. Potential options to import pictures from facebook or hook up a pet instagram account if they have one. Every Dog/Cat that gets registered with PETAZ will also have the option to receieve a free engraved pet id tag with a QRCODE on one side that will link directly to the pets PETAZ page. The other side will be text they can enter. Similar to https://www.dogtagsuk.co.uk  (I also really like the feel of this site)
+			- *Name
+			- Nickname
+			- *Birth date
+			- Unique Markings
+			- Dietary Requirements
+			- *Age
+			*More fields will need to be added as I finalise this. Only those marked with * are required
+		- Edit/Update Pet
+		- Remove Pet
+	Membership & Subscriptions
+		*Some products will be on a subscription basis, ie a subscription to a particular bag of dog food delivered 1x a month
+		- Edit Subscriptions
+		- Remove Subscriptions
+	Addresses
+		- Add Address
+		- Edit/Update Address
+		- Remove Address
+	Returns
+
+Cart/Basket
+
+Checkout
+	- Site uses braintree as a payment gateway. I'm not sure how much control we have over this component off hand but they have the option to pay via paypal or credit/debit card
+
+Confirmation/Success
+
+About
+
+Delivery Information
+
+Privacy Policy
+
+Terms & Conditions
+
+Contact Us
+
+Returns
+
+Sitemap
+
+404
