@@ -32,8 +32,8 @@ const Header = ({ title, description }) => {
                 <Menu/>
                 <Search />
                 <Nav activeKey="/" as="nav">
-                    {categories && categories.map((category) => (
-                        <Nav.Item as="li"><Nav.Link href={`/categories/${category._id}`}>{category.name}</Nav.Link></Nav.Item>
+                    {categories && categories.map((category, index) => (
+                        <Nav.Item as="li" key={index}><Nav.Link href={`/categories/${category._id}`}>{category.name}</Nav.Link></Nav.Item>
                     ))}
                 </Nav>
             </div>

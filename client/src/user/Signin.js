@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 // Redux imports
 import { connect } from 'react-redux';
@@ -72,6 +72,8 @@ const Signin = ({setAlert, removeAlert, alerts}) => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" onChange={handleChange('password')} value={password} />
                 </Form.Group>
+                <Link to={"/auth/password/forgot"}>Forgot password</Link>
+                <br/>
                 <Button variant="primary" type="submit" onClick={(e) => clickSubmit(e)}>
                     Submit
                 </Button>
