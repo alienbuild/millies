@@ -64,7 +64,7 @@ exports.forgotPassword = (req, res) => {
             })
         }
 
-        const token = jwt.sign({ _id: user._id}, process.env.JWT_RESET_PASSWORD, {expiresIn: '10m'});
+        const token = jwt.sign({ _id: user._id, name: user.name}, process.env.JWT_RESET_PASSWORD, {expiresIn: '10m'});
 
         const emailData = {
             from: process.env.EMAIL_FROM,
@@ -87,7 +87,8 @@ exports.forgotPassword = (req, res) => {
                })
            } else {
                // TODO: Sign up and setup sendgrid
-               console.log(`Email sent to ${email}.`)
+               console.log(`Email sent to ${email}.`);
+               console.log(`Reset link is:  ${process.env.CLIENT_URL}/auth/password/reset/${token}`);
                return res.json({
                    message: `Email has been sent to ${email}`
                })

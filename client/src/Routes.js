@@ -27,6 +27,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import ProductUpsell from "./core/Pages/ProductUpsell";
 import Forgot from "./user/Forgot";
+import Reset from "./user/Reset";
 
 const Routes = () => {
     return (
@@ -40,6 +41,7 @@ const Routes = () => {
                 <Route path="/categories/:categoryId" exact component={Category} />
                 <Route path="/login" exact component={Signin} />
                 <Route path="/auth/password/forgot" exact component={Forgot} />
+                <Route path="/auth/password/reset/:token" exact component={Reset} />
                 <Route path="/register" exact component={Signup} />
                 <Route path="/product/:productId" exact component={Product} />
                 <Route path={"/cart/added-to-cart"} exact component={ProductUpsell} />

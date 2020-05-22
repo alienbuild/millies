@@ -34,6 +34,22 @@ export const forgotPassword = (user) => {
     })
 };
 
+// Reset password
+export const resetPassword = (newPassword, resetPasswordLink) => {
+    return fetch(`${API}/reset-password`, {
+        method: "PUT",
+        headers: {
+            Accept: 'application/json',
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newPassword)
+    }).then(response => {
+        return response.json();
+    }).catch(err => {
+        console.log('Error', err);
+    })
+};
+
 // Handle user signin
 export const signin = (user) => {
     return fetch(`${API}/signin`, {
