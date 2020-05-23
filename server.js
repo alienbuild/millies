@@ -1,4 +1,6 @@
 const express = require('express');
+const { ApolloServer } = require('apollo-server-express');
+const http = require('http');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
@@ -18,12 +20,40 @@ const orderRoute = require('./routes/order');
 const app = express();
 const port = process.env.PORT || 5000;
 
+// Types (query/mutation/subscription)
+const typeDefs = `
+    type Query {
+        totalPosts: Int!
+    }
+`;
+
+// Resolvers
+const resolvers = {
+    Query: {
+        totalPosts: () => 42
+    }
+};
+
+// GraphQL Server
+const apolloServer = new ApolloServer({
+    typeDefs,
+    resolvers
+});
+
+// applyMiddleware. This method connects Apollo Server to a specific HTTP framework ie: express
+apolloServer.applyMiddleware({
+    app
+});
+
 // Init middleware
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use(expressValidator());
 app.use(morgan('dev'));
+
+// Server
+const httpServer = http.createServer(app);
 
 // Database
 const dotenv = require('dotenv');dotenv.config();
@@ -44,5 +74,8 @@ app.use('/api', braintreeRoutes);
 app.use('/api', orderRoute);
 
 // Start server
-app.listen(port, () => console.log(`Server is running port ${port}`));
+app.listen(port, () => {
+    console.log(`Server is running port ${port}`);
+    console.log(`GraphQL server is ready at http://localhost:${port}${apolloServer.graphqlPath}`);
+});
 

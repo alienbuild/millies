@@ -13,13 +13,15 @@ const Header = ({ title, description }) => {
 
     // Load categories
     const init = () => {
-        getCategories().then(data => {
-            if (data.error){
-                setError(data.error);
-            } else {
-                setCategories(data);
-            }
-        })
+        getCategories()
+            .then(data => {
+                if (data.error){
+                    setError(data.error);
+                } else {
+                    setCategories(data);
+                }
+            })
+            .catch((err) => console.log('Error: ', err))
     };
 
     useEffect(() => {

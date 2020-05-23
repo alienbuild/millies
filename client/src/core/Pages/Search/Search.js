@@ -18,13 +18,15 @@ const Search = () => {
     const { categories, category, search, results, searched } = data;
 
     const loadCategories = () => {
-        getCategories().then(data => {
-            if (data.error){
-                console.log(data.error);
-            } else{
-                setData({...data, categories: data})
-            }
-        })
+        getCategories()
+            .then(data => {
+                if (data.error){
+                    console.log(data.error);
+                } else{
+                    setData({...data, categories: data})
+                }
+            })
+            .catch((err) => console.log(err))
     };
 
     useEffect(() => {
