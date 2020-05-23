@@ -1,6 +1,8 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const http = require('http');
+const path = require('path');
+const { fileLoader, mergeTypes } = require('merge-graphql-schemas');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
@@ -20,17 +22,14 @@ const orderRoute = require('./routes/order');
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Types (query/mutation/subscription)
-const typeDefs = `
-    type Query {
-        totalPosts: Int!
-    }
-`;
+// typeDefs
+const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './typeDefs')));
 
 // Resolvers
 const resolvers = {
     Query: {
-        totalPosts: () => 42
+        totalPosts: () => 42,
+        me: () => 'Liam'
     }
 };
 
