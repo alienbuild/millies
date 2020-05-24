@@ -2,7 +2,7 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const http = require('http');
 const path = require('path');
-const { fileLoader, mergeTypes } = require('merge-graphql-schemas');
+const { fileLoader, mergeTypes, mergeResolvers } = require('merge-graphql-schemas');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
@@ -26,12 +26,7 @@ const port = process.env.PORT || 5000;
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './typeDefs')));
 
 // Resolvers
-const resolvers = {
-    Query: {
-        totalPosts: () => 42,
-        me: () => 'Liam'
-    }
-};
+const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './resolvers')));
 
 // GraphQL Server
 const apolloServer = new ApolloServer({
