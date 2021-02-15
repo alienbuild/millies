@@ -9,8 +9,8 @@ Create a .env file in the root of the directory.
 Setup the env variables ie:
 ```
 PORT=5000
-MONGO_URI=mongodb+srv://admin:sc00byd00@htune-zb2qg.mongodb.net/test?retryWrites=true&w=majority
-JWT_SECRET=r939398828
+MONGO_URI='Insert URI here'
+JWT_SECRET='Setup JWT Secret Here'
 ```
 
 Start the backend by running  
